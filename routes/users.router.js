@@ -32,7 +32,7 @@ router.post('/',async function(req,res,next){
     }else{
       await user.save();
       res.json(jsonResponse(200,
-        'You are a new user 🚀'))
+        'You are a new user 🚀'));
     }
 
   }
