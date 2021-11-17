@@ -50,7 +50,7 @@ connection.once('open',()=>{
 app.use('/', indexRouter);
 // app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
-// app.use('/api/customers', customersRouter);
+app.use('/api/customers', customersRouter);
 // app.use('/api/companies', companiesRouter);
 
 // catch 404 and forward to error handler
