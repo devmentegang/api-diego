@@ -73,7 +73,7 @@ UserSchema.methods.createRefreshToken = async function(){
     const refreshToken = jwt.sign(
         {user: {id,username}},
         REFRESH_TOKEN_SECRET,
-        {expiresIn:"20d"}
+        {expiresIn:"1d"}
     );
 
     try{
@@ -86,6 +86,6 @@ UserSchema.methods.createRefreshToken = async function(){
         next(new Error('Error creating refresh token'));
     }
     return accessToken;
-};
+}
 
 module.exports = Mongoose.model('User',UserSchema);

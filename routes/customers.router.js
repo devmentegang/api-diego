@@ -3,11 +3,13 @@ var router = express.Router();
 const {jsonResponse} = require('../lib/jsonresponse');
 const createError = require('http-errors');
 
+const auth = require('../auth/auth.middleware');
+
 const Customer = require('../model/customers.model');
 
 
 
-router.get('/',async (req,res,next)=>{
+router.get('/', auth.checkAuth,async (req,res,next)=>{
   let results ={};
   try{
     results = await Customer.find({}, 'company document_type document_number fist_name last_name  country date_creation status');
@@ -22,7 +24,7 @@ router.get('/',async (req,res,next)=>{
 });
 
 
-router.post('/',async (req,res,next)=>{
+router.post('/',auth.checkAuth,async (req,res,next)=>{
   const {company, document_type, document_number,fist_name,last_name, country} = req.body;
   let id_customer = null;
   if(!company || !document_type || !document_number || !fist_name || !last_name || !country){
@@ -44,7 +46,7 @@ router.post('/',async (req,res,next)=>{
   }
 });
 
-router.get('/:id_customer',async (req,res,next)=>{
+router.get('/:id_customer',auth.checkAuth,async (req,res,next)=>{
   let results;
   const {id_customer} = req.params;
   if(!id_customer){
@@ -61,7 +63,7 @@ router.get('/:id_customer',async (req,res,next)=>{
 });
 
 
-router.patch('/:id_customer', async (req,res,next)=>{
+router.patch('/:id_customer',auth.checkAuth, async (req,res,next)=>{
   let update = {};
 
   const {id_customer} = req.params;
@@ -92,7 +94,7 @@ router.patch('/:id_customer', async (req,res,next)=>{
 
 });
 
-router.delete('/:id_customer', async (req,res,next)=>{
+router.delete('/:id_customer',auth.checkAuth, async (req,res,next)=>{
   const {id_customer} = req.params;
 
   try{
@@ -111,7 +113,7 @@ router.delete('/:id_customer', async (req,res,next)=>{
 
 
 
-router.patch('/changestatus/:_id', async (req,res,next)=>{
+router.patch('/changestatus/:_id',auth.checkAuth, async (req,res,next)=>{
   let update = {};
 
   const {_id} = req.params;
