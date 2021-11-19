@@ -55,7 +55,7 @@ router.post('/login',async (req,res,next) =>{
           const accessToken = user.createAccessToken();
           const refreshToken = await user.createRefreshToken();
           
-          res.json(jsonResponse(200, {message:'User information correct',accessToken,refreshToken}));
+          res.json(jsonResponse(200, {message:'User information correct',accessToken,expiresIn: "1d"}));
         }else{
           next(createError(400,'Username and/or password incorrect'));
         }
