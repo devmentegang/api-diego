@@ -4,10 +4,9 @@ const {jsonResponse} = require('../lib/jsonresponse');
 const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const {ACCESS_TOKEN_SECRET,REFRESH_TOKEN_SECRET} = process.env;
-//const auth = require('../auth/auth.middleware');
 const Token = require('../model/token.model');
 const User = require('../model/users.model');
-
+const authMiddleware = require('../auth/auth.middleware'); 
 
 router.post('/signup',async (req,res,next) =>{
   const {username,password} = req.body;

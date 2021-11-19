@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../model/users.model');
 const {jsonResponse} = require('../lib/jsonresponse');
 const createError = require('http-errors');
-
+const authMiddleware = require('../auth/auth.middleware'); 
 
 router.get('/', async function(req, res, next) {
   let results = {};

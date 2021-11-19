@@ -61,14 +61,14 @@ UserSchema.methods.createAccessToken = function(){
     const accessToken = jwt.sign(
         {user: {id,username}},
         ACCESS_TOKEN_SECRET,
-        {expiresIn: "10d" }
+        {expiresIn: "1d" }
     );
 
     return accessToken;
 };
 
 
-UserSchema.methods.createRefreshToken = async function(){
+UserSchema.methods.createRefreshToken  = async function(){
     const {id, username} = this;
     const refreshToken = jwt.sign(
         {user: {id,username}},
