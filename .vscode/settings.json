@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/81025738-8bfc-49b7-b64c-75f89d5ecfa2/resourceGroups/TebcaTeam/providers/Microsoft.Web/sites/tebca-monitoring",
+    "appService.deploySubpath": "."
+}
